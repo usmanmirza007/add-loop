@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "ad_loop",
-    "slug": "ad_loop",
+    "name": "Add Loop",
+    "slug": "Add-Loop",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -25,6 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }
