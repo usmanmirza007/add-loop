@@ -3,6 +3,8 @@ import SignUp from '../component/SignUp';
 import Forget from '../component/Forget';
 import selectColor from '../component/splash';
 import accountType from '../component/accountType';
+import otp from '../component/otp';
+import selectCategory from '../component/selectCategory';
 import DashBoard from './DashBoard';
 import {createStackNavigator} from 'react-navigation-stack';
 //import SafeAreaView from 'react-native-safe-area-view';
@@ -11,6 +13,18 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 const Route =  createStackNavigator({
     
+    selectCategory: {
+        screen: selectCategory,
+        navigationOptions: {
+            header: null,
+        },
+    },
+    otp: {
+        screen: otp,
+        navigationOptions: {
+            header: null,
+        },
+    },
     accountType: {
         screen: accountType,
         navigationOptions: {

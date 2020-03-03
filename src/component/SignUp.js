@@ -1,82 +1,145 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Image, KeyboardAvoidingView, Dimensions, TouchableOpacity } from 'react-native';
-import logo from './../image/logo.png'
-const {width: WIDTH} = Dimensions.get('window')
+import { StyleSheet, Text, View, Image, ImageBackground, KeyboardAvoidingView, Dimensions, TouchableOpacity, } from 'react-native';
+import { width, height, totalSize } from 'react-native-dimension';
+const { width: WIDTH } = Dimensions.get('window')
+import { ScrollView } from 'react-native-gesture-handler';
+import { TextInput, TouchableRipple } from 'react-native-paper';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Ionicons, FontAwesome, AntDesign, EvilIcons, MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 
-export default class SignUp extends React.Component {
-    render(){
-        return (
-          <View style={styles.container}>
-          <View style = {{backgroundColor: '#000', height: '4%'}}></View>
-            <Image
-              style={{width: '70%', alignSelf: 'center', marginTop: '-25%'}} resizeMode= 'contain'
-              source={logo }
-            />
-            <View style = {{marginTop: '-35%', alignItems: 'center',}}>
-              <Text>Lorem ipsom dolr sit amet, Consectetur </Text>
-              <Text>adipising elit, send to</Text>
-            </View>
+var radio_props = [
+  { value: 0, label: 'Male' },
+  { value: 1, label: 'Female' },
+];
+export default class signIn extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: ''
+    };
+  }
 
-            <View style = {{alignSelf: 'flex-start', marginLeft: 30, marginBottom: 10, marginTop: 20}}>
-              <Text style = {styles.signText}>Sign Up Here</Text>
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder={'First Name'}
-                
-                placeholderTextColor={'#FFA726'}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder={'Last Name'}
-                
-                placeholderTextColor={'#FFA726'}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder={'Email'}
-                
-                placeholderTextColor={'#FFA726'}
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                placeholder={'Password'}
-                
-                placeholderTextColor={'#FFA726'}
-              />
-            </View>
-            <View style = {styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={
-                  () => this.props.navigation.navigate('SignIn')
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={{ backgroundColor: '#000', height: '4%' }}></View>
+        <KeyboardAvoidingView behavior="padding">
+          <ScrollView>
+            <Text style={styles.headerText}>Create{'\n'}your account</Text>
+            <TextInput
+              style={styles.input}
+              mode='outlined'
+              theme={{
+                colors: {
+                  primary: '#00cb9c',
                 }
-              >
-                <Text style={styles.buttonText}>SUBMIT</Text>
+              }}
+              label='First Name'
+              placeholder="First Name"
+              placeholderTextColor = {'#666666'}
+              value={this.state.text}
+              onChangeText={text => this.setState({ text })}
+            />
+            <TextInput
+              style={styles.input1}
+              mode='outlined'
+              theme={{
+                colors: {
+                  primary: '#00cb9c',
+                }
+              }}
+              label='Last Name'
+              placeholder="Last Name"
+              placeholderTextColor = {'#666666'}
+              value={this.state.text}
+              onChangeText={text => this.setState({ text })}
+            />
+            <TextInput
+              style={styles.input1}
+              mode='outlined'
+              theme={{
+                colors: {
+                  primary: '#00cb9c',
+                }
+              }}
+              label='Email ID'
+              placeholder="Email ID"
+              placeholderTextColor = {'#666666'}
+              value={this.state.text}
+              onChangeText={text => this.setState({ text })}
+            />
+            <TextInput
+              style={styles.input1}
+              mode='outlined'
+              theme={{
+                colors: {
+                  primary: '#00cb9c',
+                }
+              }}
+              label='Mobile Number'
+              placeholder="Mobile Number"
+              placeholderTextColor = {'#666666'}
+              value={this.state.text}
+              onChangeText={text => this.setState({ text })}
+            />
+            <TextInput
+              style={styles.input1}
+              mode='outlined'
+              theme={{
+                colors: {
+                  primary: '#00cb9c',
+                }
+              }}
+              label='Location'
+              placeholder="Location"
+              placeholderTextColor = {'#666666'}
+              value={this.state.text}
+              onChangeText={text => this.setState({ text })}
+
+            />
+            <View style={styles.location}>
+              <MaterialIcons
+                // reverse
+                name='location-searching'
+                type='font-awesome'
+                color='#666666'
+                size={24}
+              />
+            </View>
+            <View style={styles.mainRadioView}>
+              <Text style={styles.choose}>Choose Gender</Text>
+              <View style={styles.radioButton}>
+                <RadioForm
+                  radio_props={radio_props}
+                  style={{ marginTop: 0, }}
+                  initial={0}
+                  
+                  radioStyle={{ padding: 3, marginRight: 50 }}
+                  buttonColor={'#666666'}
+                  buttonSize={10}
+                  selectedButtonColor={'#00cb9c'}
+                  formHorizontal={true}
+                  //buttonOuterSize={10}
+                  onPress={(value) => { this.setState({ value: value }) }}
+                />
+              </View>
+            </View>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => this.props.navigation.navigate('otp')}>
+              <Text style={styles.buttonText}>SIGN UP</Text>
             </TouchableOpacity>
+            <View style={styles.signupView}>
+              <Text style={styles.alresdy}>Already have an account?</Text>
+              <Text onPress={() => this.props.navigation.navigate('SignIn')}
+                style={styles.signupText}>Sign In</Text>
             </View>
-            <View style = {styles.bottumTextContainer}>
-              <Text style = {{fontSize: 11, marginLeft: 28}}>Already A Member</Text>
-              <TouchableOpacity
-              onPress={
-                () => this.props.navigation.navigate('SignIn')
-              }
-                >
-                  <Text style={styles.signUpNowText}>Sign In Now</Text>
-              </TouchableOpacity>
-              <Text style = {{fontSize: 11, marginLeft: 55}}>Visit As Guest</Text>
-            </View>
-          </View>
-          );
-    }
-  
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </View >
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -86,46 +149,67 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
   },
-  inputContainer:{
-    alignItems: 'center',
-  },
-  input:{
-    width:  WIDTH - 55,
-    height: 50, 
-    padding: 15,
-    marginBottom: 10, 
-    borderWidth: 2,
-    borderRadius: 5,
-    borderColor: '#FFA726',
-  },
-  signText:{
+  headerText: {
+    marginLeft: wp('5%'),
+    marginTop: wp('10%'),
+    fontSize: hp('5%'),
     fontWeight: 'bold',
-    fontSize: 20,
+    color: '#5f5d70'
   },
-  buttonContainer:{
+  input: {
+    marginTop: wp('12%'),
+    marginHorizontal: wp('5%'),
+    backgroundColor: '#fff'
+  },
+  input1: {
+    marginTop: wp('4%'),
+    marginHorizontal: wp('5%'),
+    backgroundColor: '#fff'
+  },
+  button: {
+    marginTop: hp('5%'),
     alignItems: 'center',
-    marginTop: 5,
-  },
-  Button:{
-    
-  },
-  buttonText:{
+    backgroundColor: '#00cb9c',
+    borderRadius: wp('10%'),
     height: 50,
+    marginHorizontal: wp('10%')
+  },
+  buttonText: {
+
     fontSize: 22,
-    color: '#FFA726',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-    width:  WIDTH - 55,
-    borderRadius: 5,
-    backgroundColor: '#263238',
+    color: '#fff',
+    marginTop: hp('1.5%')
   },
-  bottumTextContainer:{
-    flexDirection: 'row',
+  signupView: {
     alignItems: 'center',
-    marginTop: 15
+    marginTop: hp('5%'),
+    marginBottom: hp('5%')
   },
-  signUpNowText:{
-    color: '#FFA726',
-    textDecorationLine: 'underline'
+  alresdy: {
+    fontSize: hp('2.5%'),
+    color: '#666666'
+  },
+  signupText: {
+    fontSize: hp('2.5%'),
+    marginTop: hp('1%'),
+    color: '#00cb9c',
+    fontWeight: 'bold'
+  },
+  location: {
+    position: 'absolute',
+    marginLeft: wp('80%'),
+    marginTop: hp('77.5%')
+  },
+  radioButton: {
+    marginRight: 30,
+    marginTop: 10
+  },
+  mainRadioView: {
+    marginLeft: wp('5%'),
+    marginTop: hp('3%')
+  },
+  choose: {
+    fontSize: 15,
+    color: '#666666'
   }
 });

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.5",
+    "@twotalltotems/react-native-otp-input": "^1.2.1",
     "cli": "^1.0.1",
     "expo": "^36.0.2",
     "native-base": "^2.13.8",
@@ -21,8 +22,10 @@
     "react-native-ionicons": "^4.6.3",
     "react-native-paper": "^3.6.0",
     "react-native-reanimated": "^1.4.0",
+    "react-native-responsive-screen": "^1.4.0",
     "react-native-safe-area-context": "^0.6.2",
     "react-native-safe-area-view": "^1.0.0",
+    "react-native-simple-radio-button": "^2.7.4",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
     "react-navigation-drawer": "^2.3.3",
