@@ -7,29 +7,17 @@ import { TextInput, TouchableRipple } from 'react-native-paper';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Ionicons, FontAwesome, AntDesign, EvilIcons, MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 
-export default class chat extends React.Component {
+export default class favority extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             text: ''
         };
     }
-    static navigationOptions = {
-        tabBarIcon: ({ tintColor }) => (
-            <Ionicons
-                name='md-time'
-                type='font-awesome'
-                size={24}
-                style={{ color: tintColor }}
-                containerStyle={{ width: width(10) }}
-            />
-        )
-    }
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ backgroundColor: '#000', height: '4%' }}></View>
-                <Text style = {styles.headerText}>My Offers</Text>
+                <Text style = {styles.headerText}>favority</Text>
             </View >
         );
     }
@@ -41,11 +29,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         // alignItems: 'center',
         // justifyContent: 'center',
-    },
-    headerText: {
-        marginHorizontal: wp('5%'),
-        marginTop: hp('2%'),
-        fontSize: 15,
-        color: '#5f5d70'
     },
 });

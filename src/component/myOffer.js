@@ -6,12 +6,16 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { TextInput, TouchableRipple } from 'react-native-paper';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Ionicons, FontAwesome, AntDesign, EvilIcons, MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
-
+import Claimed_Tab from './claimed';
+import Redeemed_Tab from './redeemed';
+import Favority_Tab from './favority';
 export default class myOffer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            claimed: true,
+            redeemed: false,
+            favority: false
         };
     }
     static navigationOptions = {
@@ -25,29 +29,71 @@ export default class myOffer extends React.Component {
             />
         )
     }
+    ScreenView() {
+        if (this.state.claimed) {
+            return (
+                <Claimed_Tab navigation={this.props.navigation} />
+            )
+        }
+        else if (this.state.redeemed) {
+            return (
+                <Redeemed_Tab navigation={this.props.navigation} />
+            )
+        }
+        else {
+            return (
+                <Favority_Tab navigation={this.props.navigation} />
+            )
+        }
+    }
     render() {
         return (
             <View style={styles.container}>
                 <View style={{ backgroundColor: '#000', height: '4%' }}></View>
-                <View style={{ marginTop: hp('4%'), marginHorizontal: wp('5%'), flexDirection: 'row' }}>
-                    <View style={{ marginTop: 0, }}>
-                        <Text style={{ fontSize: 20, marginLeft: 0, fontWeight: 'bold', color: '#5f5d70' }}>Select Categories</Text>
-                    </View>
-                    <View style={{ marginTop: 0, }}>
-                        <Text style={{ fontSize: 20, marginLeft: 80, fontWeight: 'bold', color: '#00cb9c' }}>Next</Text>
-                    </View>
-                    <View style={{ marginLeft: 10 }}>
-                        <AntDesign name='arrowright' color='#00cb9c' size={26}
-                            onPress={
-                                () => this.props.navigation.navigate('#')
-                            } />
-                    </View>
+                <Text style = {styles.headerText}>My Offers</Text>
+                <View style = {{flexDirection: 'row', }}>
+                    <TouchableOpacity
+                        onPress={() => this.setState({ claimed: true, redeemed: false, favority: false })}
+                            style={{
+                                padding: 15,
+                                alignItems: 'center',
+                                backgroundColor: '#fff',
+                                width: WIDTH - 250,
+                                borderBottomColor: this.state.claimed? '#00cb9c': '#fff',
+                                borderBottomWidth: this.state.claimed? 4 : 0,
+                                
+                            }}>
+                            <Text style={styles.loginText}>claimed</Text>
+                                    
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        onPress={() => this.setState({ claimed: false, redeemed: true, favority: false})}
+                            style={{
+                                padding: 15,
+                                alignItems: 'center',
+                                backgroundColor: '#fff',
+                                width: WIDTH - 250,
+                                borderBottomColor: this.state.redeemed? '#00cb9c': '#fff',
+                                borderBottomWidth: this.state.redeemed? 4 : 0,
+                                
+                            }}>
+                            <Text style={styles.loginText}>redeemed</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        onPress={() => this.setState({ claimed: false, redeemed: false, favority: true})}
+                            style={{
+                                padding: 15,
+                                alignItems: 'center',
+                                backgroundColor: '#fff',
+                                width: WIDTH - 250,
+                                borderBottomColor: this.state.favority? '#00cb9c': '#fff',
+                                borderBottomWidth: this.state.favority? 4 : 0,
+                                
+                            }}>
+                            <Text style={styles.loginText}>favority</Text>
+                    </TouchableOpacity>
                 </View>
-                <Text style={styles.headerText}>Please select categories you want to see ads from</Text>
-                <ScrollView>
-                   
-                    
-                </ScrollView>
+                {this.ScreenView()}
             </View >
         );
     }
@@ -63,12 +109,7 @@ const styles = StyleSheet.create({
     headerText: {
         marginHorizontal: wp('5%'),
         marginTop: hp('2%'),
-        fontSize: 15,
-        color: '#666666'
-    },
-    checkIcon: {
-        alignItems: 'flex-end',
-        marginHorizontal: 10,
-        marginTop: 15
+        fontSize: hp('5%'),
+        color: '#5f5d70'
     },
 });
