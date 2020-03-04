@@ -1,265 +1,286 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Image, KeyboardAvoidingView, ImageBackground, Dimensions, TouchableOpacity } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { Icon } from 'react-native-elements';
+import { StyleSheet, Text, TextInput, View, Image, ImageBackground, KeyboardAvoidingView, Dimensions, TouchableOpacity, } from 'react-native';
 import { width, height, totalSize } from 'react-native-dimension';
+const { width: WIDTH } = Dimensions.get('window')
 import { ScrollView } from 'react-native-gesture-handler';
-const {width: WIDTH} = Dimensions.get('window')
-export default class Home extends React.Component {
-    render(){
+import { TouchableRipple } from 'react-native-paper';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Ionicons, FontAwesome, AntDesign, EvilIcons, MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
+
+export default class home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: ''
+        };
+    }
+
+    static navigationOptions = {
+
+        tabBarIcon: ({ tintColor }) => (
+
+            <AntDesign
+                name='home'
+                type='font-awesome'
+                size={24}
+                style={{ color: tintColor }}
+                containerStyle={{ width: width(10) }}
+            />
+        )
+    }
+    render() {
         return (
             <View style={styles.container}>
-              <View style = {{backgroundColor: '#000', height: '4%'}}></View>
-              <View style = {{height: '10%', backgroundColor: '#263238',}}>
-                <View style = {{ marginTop: 15, flexDirection: 'row' }}>
-                  <View style = {{marginLeft: 20}}>
-                      <Icon  name = 'menu' color = '#FFA726' size = {35} 
-                  onPress={
-                      () => this.props.navigation.openDrawer()
-                  }/>
-                  </View>
-                  <View style = {{marginTop: 5,}}>
-                      <Text style = {{fontSize: 20, marginLeft: 100, fontWeight: 'bold', color: '#fff'}}>Home</Text>
-                  </View>
+                <View style={{ backgroundColor: '#000', height: '4%' }}></View>
+                <View style={{ marginTop: hp('2%'), marginHorizontal: wp('5%'), flexDirection: 'row' }}>
+                    <View style={{ marginLeft: wp('0%') }}>
+                        <Ionicons name='ios-notifications' color='#5f5d70' size={26}
+                            onPress={
+                                () => this.props.navigation.navigate('#')
+                            } />
+                    </View>
+                    <View style={{ marginLeft: wp('63%') }}>
+                        <MaterialIcons name='location-on' color='#5f5d70' size={26}
+                            onPress={
+                                () => this.props.navigation.navigate('#')
+                            } />
+                    </View>
+                    <View style={{ marginTop: 0, }}>
+                        <Text style={{ fontSize: 20, marginLeft: wp('2%'), fontWeight: 'bold', color: '#5f5d70' }}>India</Text>
+                    </View>
                 </View>
-              </View>
-              <ImageBackground source = {require('./../image/background.png')} style = {{width: '100%', height: '100%'}} resizeMode= 'stretch'>
-              <ScrollView>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15), }}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
+                <View style={styles.inputContainer}>
+                    <AntDesign
+                        // reverse
+                        name='search1'
+                        type='font-awesome'
+                        color='#5f5d70'
+                        size={22}
+                        style={{ marginHorizontal: 20 }}
+                    />
+                    <TextInput
+                        numberOfLines={6}
+                        placeholderTextColor='#666666'
+                        style={styles.searchInput}
+                        placeholder={'Search'}
+                        containerStyle={{ marginVertical: '5%' }}
+                    />
+                    <FontAwesome
+                        // reverse
+                        name='microphone'
+                        type='font-awesome'
+                        color='#5f5d70'
+                        size={22}
+                        style={{ marginHorizontal: 10 }}
+                    />
+                </View>
+
+                <ScrollView>
+                    <View style={{ marginTop: hp('2%'), marginHorizontal: wp('5%'), flexDirection: 'row' }}>
+                        <View style={{ marginTop: 0, }}>
+                            <Text style={{ fontSize: 20, marginLeft: 0, fontWeight: 'bold', color: '#5f5d70' }}>Categories</Text>
+                        </View>
+                        <View style={{ marginTop: 0, }}>
+                            <Text style={{ fontSize: 20, marginLeft: wp('32%'), fontWeight: 'bold', color: '#00cb9c' }}>SEE ALL</Text>
+                        </View>
+                        <View style={{ marginLeft: 10 }}>
+                            <AntDesign name='arrowright' color='#00cb9c' size={26}
+                                onPress={
+                                    () => this.props.navigation.navigate('#')
+                                } />
+                        </View>
                     </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
+                    <View style={styles.mainCategory}>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>PROPERTIES</Text>
+                        </View>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>CARS</Text>
+                        </View>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>FURNITURE</Text>
+                        </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
+                    <View style={styles.mainCategory}>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>JOBS</Text>
+                        </View>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>  ELECTRONIC{'\n'}& APPLIANCES</Text>
+                        </View>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>MOBILES</Text>
+                        </View>
                     </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
+                    <View style={styles.mainCategory}>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>BIKES</Text>
+                        </View>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>BOOKS SPORTS{'\n'}    & HOBBIES</Text>
+                        </View>
+                        <View style={styles.innerCategoryView}>
+                            <Image source={require('./../image/video1.png')}
+                                style={styles.imageCategory} />
+                            <Text style={styles.categoryText}>FASHION</Text>
+                        </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
+                    <View style={{ marginTop: hp('5%'), marginBottom: hp('3%'), marginHorizontal: wp('5%'), flexDirection: 'row' }}>
+                        <View style={{ marginTop: 0, }}>
+                            <Text style={{ fontSize: 20, marginLeft: 0, fontWeight: 'bold', color: '#5f5d70' }}>Fresh & Nes Offers</Text>
+                        </View>
+                        <View style={{ marginTop: 0, }}>
+                            <Text style={{ fontSize: 20, marginLeft: wp('8%'), fontWeight: 'bold', color: '#00cb9c' }}>VIEW ALL</Text>
+                        </View>
+                        <View style={{ marginLeft: 10 }}>
+                            <AntDesign name='arrowright' color='#00cb9c' size={26}
+                                onPress={
+                                    () => this.props.navigation.navigate('#')
+                                } />
+                        </View>
                     </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
+                    <View style={styles.mainAdsView}>
+                        <View style={styles.adsView}>
+                            <Image source={require('./../image/ads1.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
+                            <Text style={styles.offer}>50% off</Text>
+                            <Text style={styles.top} >By Seven top retailer</Text>
+                        </View>
+                        <View style={styles.adsView1}>
+                            <Image source={require('./../image/ads3.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
+                            <Text style={styles.offer}>Buy 1 Get 1 Free</Text>
+                            <Text style={styles.top} >By Seven top retailer</Text>
+                        </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
+                    <View style={styles.mainAdsView}>
+                        <View style={styles.adsView}>
+                            <Image source={require('./../image/ads1.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
+                            <Text style={styles.offer}>50% off</Text>
+                            <Text style={styles.top} >By Seven top retailer</Text>
+                        </View>
+                        <View style={styles.adsView1}>
+                            <Image source={require('./../image/ads3.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
+                            <Text style={styles.offer}>Buy 1 Get 1 Free</Text>
+                            <Text style={styles.top} >By Seven top retailer</Text>
+                        </View>
                     </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
+                    <View style={styles.mainAdsView}>
+                        <View style={styles.adsView}>
+                            <Image source={require('./../image/ads1.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
+                            <Text style={styles.offer}>50% off</Text>
+                            <Text style={styles.top} >By Seven top retailer</Text>
+                        </View>
+                        <View style={styles.adsView1}>
+                            <Image source={require('./../image/ads3.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
+                            <Text style={styles.offer}>Buy 1 Get 1 Free</Text>
+                            <Text style={styles.top} >By Seven top retailer</Text>
+                        </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
-                    </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
-                    </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
-                    </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
-                    </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
-                    </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity style = {{backgroundColor: '#263238', height: 70, justifyContent: 'center', marginTop: 3, marginLeft: 20, marginRight: 20, borderRadius: 5}}>
-                  <View style = {{justifyContent: 'space-between', flexDirection: 'row', height:height(15)}}>
-                    <View style = {{flexDirection: 'row'}}>
-                      <View style={{ justifyContent:'center', alignItems: 'center',}}>
-                          <Image source={require('./../image/user1.png')} style={{width: 50, height: 50, marginLeft: 20}}></Image>
-                      </View>
-                      <View style = {{justifyContent:'center', alignItems: 'center', marginLeft: 20}}>
-                        <Text style = {{fontSize: 15, alignSelf: 'flex-start', fontWeight: 'bold', color: '#fff'}}>Alex Rowe</Text>
-                        <Text style = {{alignSelf: 'flex-start', fontSize: 15, color: '#fff'}}>USD</Text>
-                      </View>
-                    </View>
-                    <View style = {{justifyContent: 'center', marginRight: 20}}>
-                      <Text style = {{fontSize: 15, color: '#fff', alignSelf: 'flex-end'}}>55.122 $</Text>
-                      <TouchableOpacity
-                        style={{backgroundColor: '#FFA726', borderRadius: 10, width: 75, marginTop: 5, height: 30, justifyContent: 'center'}}
-                        onPress={this.onPress}
-                      >
-                        <Text style = {{alignSelf: 'center', color: '#263238', fontSize: 15}}>Buy</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-                
-                
-              </ScrollView>
-              </ImageBackground>
-            </View>
-          );
+                    <Text style = {styles.allOffers}>VIEW ALL OFFERS</Text>
+                </ScrollView>
+            </View >
+        );
     }
-  
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+    },
+    inputContainer: {
+        width: wp('90%'),
+        height: hp('8%'),
+        borderRadius: 3,
+        marginTop: hp('2%'),
+        marginHorizontal: wp('5%'),
+        backgroundColor: '#f4f4f8',
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    searchInput: {
+        fontSize: 15,
+        width: wp('95%'),
+        marginRight: wp('-35%')
+    },
+    mainCategory: {
+        marginTop: hp('3%'),
+        marginLeft: wp('0%'),
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+    innerCategoryView: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: wp('30%')
+    },
+    imageCategory: {
+        width: wp('15%'),
+        height: hp('10%'),
+        tintColor: '#00cb9c',
+    },
+    categoryText: {
+        color: '#666666',
+        fontSize: 15,
+        alignSelf: 'center',
+        marginTop: hp('1%')
+    },
+    mainAdsView: {
+        flexDirection: 'row',
+        marginTop: hp('1%')
+    },
+    adsView: {
+        backgroundColor: '#fff',
+        borderColor: '#ededee',
+        borderWidth: 2,
+        borderRadius: 3,
+        paddingHorizontal: wp('1%'),
+        marginLeft: wp('5%'),
+        marginRight: wp('1%'),
+        paddingTop: wp('1%')
+    },
+    adsView1: {
+        paddingHorizontal: wp('1%'),
+        paddingTop: wp('1%'),
+        backgroundColor: '#fff',
+        borderColor: '#ededee',
+        borderWidth: 2,
+        borderRadius: 3,
+    },
+    offer: {
+        fontSize: 20,
+        color: '#5f5d70',
+        marginTop: hp('2%')
+    },
+    top: {
+        fontSize: 15,
+        color: '#666666',
+        marginTop: hp('1%'),
+        marginBottom: hp('2%'),
+    },
+    allOffers:{
+        alignSelf: 'center',
+        fontSize: 15,
+        fontWeight: 'bold',
+        color: '#00cb9c',
+        marginBottom: hp('5%'),
+        marginTop: hp('5%'),
+    }
 });

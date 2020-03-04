@@ -29,13 +29,190 @@ export default class selectCategory extends React.Component {
                     <View style={{ marginLeft: 10 }}>
                         <AntDesign name='arrowright' color='#00cb9c' size={26}
                             onPress={
-                                () => this.props.navigation.navigate('#')
+                                () => this.props.navigation.navigate('tab')
                             } />
                     </View>
                 </View>
-                <Text style = {styles.headerText}>Please select categories you want to see ads from</Text>
+                <Text style={styles.headerText}>Please select categories you want to see ads from</Text>
                 <ScrollView>
+                    <View style = {{flexDirection: 'row', marginTop: hp('10%'),  borderTopWidth: 2, borderTopColor: '#ccc'}}>
+                        <View 
+                            style={{
+                                width: WIDTH - wp('50%'),
+                                height: hp('25%'),
+                                backgroundColor: '#00cb9c'
+                            }}>
+                            <View style={styles.checkIcon}>
+                                <AntDesign
+                                    name='check'
+                                    type='font-awesome'
+                                    color='#fff'
+                                    size={26}
+                                    containerStyle={{ width: width(10) }} />
+                            </View>
+                            <Image source={require('./../image/video1.png')}
+                                style={{
+                                    width: wp('15%'),
+                                    height: hp('10%'),
+                                    alignSelf: 'center',
+                                    tintColor: '#fff',
+                                }} />
+                            <Text style={{
+                                color: '#fff',
+                                fontSize: 15,
+                                alignSelf: 'center',
+                                marginTop: '10%'
+                            }}>ELECTRONICS</Text>
+                        </View>
 
+                        <View 
+                            style={{
+                                width: WIDTH - wp('50%'),
+                                backgroundColor: '#fff',
+                                height: hp('25%'),
+                            }}>
+                            <View style={styles.checkIcon}>
+                                <AntDesign
+                                    name='check'
+                                    type='font-awesome'
+                                    color='#fff'
+                                    size={26}
+                                    containerStyle={{ width: width(10) }} />
+                            </View>
+                            <Image source={require('./../image/video1.png')}
+                                style={{
+                                    width: wp('15%'),
+                                    height: hp('10%'),
+                                    alignSelf: 'center',
+                                    tintColor:  '#00cb9c',
+                                }} />
+                            <Text style={{
+                                color: '#666666',
+                                fontSize: 15,
+                                alignSelf: 'center',
+                                marginTop: '10%'
+                            }}>HOME & TEXTILE</Text>
+                        </View>
+                    </View>
+                    <View style = {{flexDirection: 'row', marginTop: hp('0%'), }}>
+                        <View 
+                            style={{
+                                width: WIDTH - wp('50%'),
+                                height: hp('25%'),
+                                backgroundColor: '#fff'
+                            }}>
+                            <View style={styles.checkIcon}>
+                                <AntDesign
+                                    name='check'
+                                    type='font-awesome'
+                                    color='#fff'
+                                    size={26}
+                                    containerStyle={{ width: width(10) }} />
+                            </View>
+                            <Image source={require('./../image/video1.png')}
+                                style={{
+                                    width: wp('15%'),
+                                    height: hp('10%'),
+                                    alignSelf: 'center',
+                                    tintColor: '#00cb9c',
+                                }} />
+                            <Text style={{
+                                color: '#666666',
+                                fontSize: 15,
+                                alignSelf: 'center',
+                                marginTop: '10%'
+                            }}>PERSONAL CARE</Text>
+                        </View>
+
+                        <View 
+                            style={{
+                                width: WIDTH - wp('50%'),
+                                backgroundColor: '#00cb9c',
+                                height: hp('25%'),
+                            }}>
+                            <View style={styles.checkIcon}>
+                                <AntDesign
+                                    name='check'
+                                    type='font-awesome'
+                                    color='#fff'
+                                    size={26}
+                                    containerStyle={{ width: width(10) }} />
+                            </View>
+                            <Image source={require('./../image/video1.png')}
+                                style={{
+                                    width: wp('15%'),
+                                    height: hp('10%'),
+                                    alignSelf: 'center',
+                                    tintColor:  '#fff',
+                                }} />
+                            <Text style={{
+                                color: '#fff',
+                                fontSize: 15,
+                                alignSelf: 'center',
+                                marginTop: '10%'
+                            }}>INDEPENDENT GROCER</Text>
+                        </View>
+                    </View>
+                    <View style = {{flexDirection: 'row', marginTop: hp('0%'),  borderBottomWidth: 2, borderBottomColor: '#ccc', marginBottom: hp('10%')}}>
+                    <View 
+                        style={{
+                            width: WIDTH - wp('50%'),
+                            height: hp('25%'),
+                            backgroundColor: '#00cb9c'
+                        }}>
+                        <View style={styles.checkIcon}>
+                            <AntDesign
+                                name='check'
+                                type='font-awesome'
+                                color='#fff'
+                                size={26}
+                                containerStyle={{ width: width(10) }} />
+                        </View>
+                        <Image source={require('./../image/video1.png')}
+                            style={{
+                                width: wp('15%'),
+                                height: hp('10%'),
+                                alignSelf: 'center',
+                                tintColor: '#fff',
+                            }} />
+                        <Text style={{
+                            color: '#fff',
+                            fontSize: 15,
+                            alignSelf: 'center',
+                            marginTop: '10%'
+                        }}>GIFT/BOOK STORE</Text>
+                    </View>
+
+                    <View 
+                        style={{
+                            width: WIDTH - wp('50%'),
+                            backgroundColor: '#fff',
+                            height: hp('25%'),
+                        }}>
+                        <View style={styles.checkIcon}>
+                            <AntDesign
+                                name='check'
+                                type='font-awesome'
+                                color='#fff'
+                                size={26}
+                                containerStyle={{ width: width(10) }} />
+                        </View>
+                        <Image source={require('./../image/video1.png')}
+                            style={{
+                                width: wp('15%'),
+                                height: hp('10%'),
+                                alignSelf: 'center',
+                                tintColor:  '#00cb9c',
+                            }} />
+                        <Text style={{
+                            color: '#666666',
+                            fontSize: 15,
+                            alignSelf: 'center',
+                            marginTop: '10%'
+                        }}>PET SUPPLY STORE</Text>
+                    </View>
+                </View>
+                    
                 </ScrollView>
             </View >
         );
@@ -49,10 +226,15 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         // justifyContent: 'center',
     },
-    headerText:{
+    headerText: {
         marginHorizontal: wp('5%'),
         marginTop: hp('2%'),
         fontSize: 15,
         color: '#666666'
-    }
+    },
+    checkIcon: {
+        alignItems: 'flex-end',
+        marginHorizontal: 10,
+        marginTop: 15
+    },
 });

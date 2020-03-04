@@ -39,11 +39,18 @@ export default class signIn extends React.Component {
                                 size={26}
                                 containerStyle={{ width: width(10) }} />
                         </View>
+                        <Image source = {require('./../image/video1.png')}
+                         style = {{
+                             width: wp('15%'),
+                            height: hp('10%'),
+                            alignSelf: 'center',
+                            tintColor: this.state.shoppper? '#fff': '#00cb9c',
+                        }} />
                         <Text style={{
                             color:  this.state.shoppper? '#fff': '#00cb9c',
                             fontSize: 15,
                             alignSelf: 'center',
-                            marginTop: '20%'
+                            marginTop: '10%'
                         }}>I AM A SHOPPER</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.setState({ shoppper: false, retaler: true, })}
@@ -65,11 +72,18 @@ export default class signIn extends React.Component {
                                 size={26}
                                 containerStyle={{ width: width(10) }} />
                         </View>
+                        <Image source = {require('./../image/video1.png')}
+                         style = {{
+                             width: wp('15%'),
+                            height: hp('10%'),
+                            alignSelf: 'center',
+                            tintColor: this.state.retaler? '#fff': '#00cb9c',
+                        }} />
                         <Text style={{
                             color:  this.state.retaler? '#fff': '#00cb9c',
                             fontSize: 15,
                             alignSelf: 'center',
-                            marginTop: '20%'
+                            marginTop: '10%'
                         }}>I AM A RETALER</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('SignIn')}

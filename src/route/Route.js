@@ -5,7 +5,7 @@ import selectColor from '../component/splash';
 import accountType from '../component/accountType';
 import otp from '../component/otp';
 import selectCategory from '../component/selectCategory';
-import DashBoard from './DashBoard';
+import dashBoardBottomTab from './dashBoardBottomTab';
 import {createStackNavigator} from 'react-navigation-stack';
 //import SafeAreaView from 'react-native-safe-area-view';
 import SafeAreaView from 'react-native-safe-area-context';
@@ -13,6 +13,12 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 const Route =  createStackNavigator({
     
+    tab: {
+        screen: dashBoardBottomTab,
+        navigationOptions: {
+            header: null,
+        },
+    },
     selectCategory: {
         screen: selectCategory,
         navigationOptions: {
@@ -52,12 +58,6 @@ const Route =  createStackNavigator({
     },
     Forget: {
         screen: Forget,
-        navigationOptions: {
-            header: null,
-        },
-    },
-    Home: {
-        screen: DashBoard,
         navigationOptions: {
             header: null,
         },

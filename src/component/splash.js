@@ -19,7 +19,7 @@ export default class splash extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('./../image/splash.png')} style={{ flex: 1, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <ImageBackground source={require('./../image/splash.jpg')} style={{ flex: 1, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
       </ImageBackground>
         );
     }
