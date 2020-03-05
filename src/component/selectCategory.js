@@ -11,10 +11,62 @@ export default class selectCategory extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            checkBox1: false,
+            checkBox2: false,
+            checkBox3: false,
+            checkBox4: false,
+            checkBox5: false,
+            checkBox6: false,
         };
     }
-
+    onCheckBox1(){
+        if(this.state.checkBox1){
+            this.setState({checkBox1: false})
+        }
+        else{
+            this.setState({checkBox1: true})
+        }
+    }
+    onCheckBox2(){
+        if(this.state.checkBox2){
+            this.setState({checkBox2: false})
+        }
+        else{
+            this.setState({checkBox2: true})
+        }
+    }
+    onCheckBox3(){
+        if(this.state.checkBox3){
+            this.setState({checkBox3: false})
+        }
+        else{
+            this.setState({checkBox3: true})
+        }
+    }
+    onCheckBox4(){
+        if(this.state.checkBox4){
+            this.setState({checkBox4: false})
+        }
+        else{
+            this.setState({checkBox4: true})
+        }
+    }
+    onCheckBox5(){
+        if(this.state.checkBox5){
+            this.setState({checkBox5: false})
+        }
+        else{
+            this.setState({checkBox5: true})
+        }
+    }
+    onCheckBox6(){
+        if(this.state.checkBox6){
+            this.setState({checkBox6: false})
+        }
+        else{
+            this.setState({checkBox6: true})
+        }
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -36,11 +88,11 @@ export default class selectCategory extends React.Component {
                 <Text style={styles.headerText}>Please select categories you want to see ads from</Text>
                 <ScrollView>
                     <View style = {{flexDirection: 'row', marginTop: hp('10%'),  borderTopWidth: 2, borderTopColor: '#ccc'}}>
-                        <View 
+                        <TouchableOpacity onPress={() =>  this.onCheckBox1()}
                             style={{
                                 width: WIDTH - wp('50%'),
                                 height: hp('25%'),
-                                backgroundColor: '#00cb9c'
+                                backgroundColor: this.state.checkBox1? '#00cb9c': '#fff',
                             }}>
                             <View style={styles.checkIcon}>
                                 <AntDesign
@@ -55,20 +107,20 @@ export default class selectCategory extends React.Component {
                                     width: wp('15%'),
                                     height: hp('10%'),
                                     alignSelf: 'center',
-                                    tintColor: '#fff',
+                                    tintColor: this.state.checkBox1? '#fff': '#00cb9c'
                                 }} />
                             <Text style={{
-                                color: '#fff',
+                                color: this.state.checkBox1? '#fff': '#666666',
                                 fontSize: 15,
                                 alignSelf: 'center',
                                 marginTop: '10%'
                             }}>ELECTRONICS</Text>
-                        </View>
+                        </TouchableOpacity>
 
-                        <View 
+                        <TouchableOpacity onPress={() =>  this.onCheckBox2()}
                             style={{
                                 width: WIDTH - wp('50%'),
-                                backgroundColor: '#fff',
+                                backgroundColor: this.state.checkBox2? '#00cb9c': '#fff',
                                 height: hp('25%'),
                             }}>
                             <View style={styles.checkIcon}>
@@ -84,22 +136,22 @@ export default class selectCategory extends React.Component {
                                     width: wp('15%'),
                                     height: hp('10%'),
                                     alignSelf: 'center',
-                                    tintColor:  '#00cb9c',
+                                    tintColor:  this.state.checkBox2? '#fff': '#00cb9c'
                                 }} />
                             <Text style={{
-                                color: '#666666',
+                                color: this.state.checkBox2? '#fff': '#666666',
                                 fontSize: 15,
                                 alignSelf: 'center',
                                 marginTop: '10%'
                             }}>HOME & TEXTILE</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     <View style = {{flexDirection: 'row', marginTop: hp('0%'), }}>
-                        <View 
+                        <TouchableOpacity onPress={() =>  this.onCheckBox3()}
                             style={{
                                 width: WIDTH - wp('50%'),
                                 height: hp('25%'),
-                                backgroundColor: '#fff'
+                                backgroundColor:  this.state.checkBox3? '#00cb9c': '#fff',
                             }}>
                             <View style={styles.checkIcon}>
                                 <AntDesign
@@ -114,20 +166,20 @@ export default class selectCategory extends React.Component {
                                     width: wp('15%'),
                                     height: hp('10%'),
                                     alignSelf: 'center',
-                                    tintColor: '#00cb9c',
+                                    tintColor: this.state.checkBox3? '#fff': '#00cb9c'
                                 }} />
                             <Text style={{
-                                color: '#666666',
+                                color: this.state.checkBox3? '#fff': '#666666',
                                 fontSize: 15,
                                 alignSelf: 'center',
                                 marginTop: '10%'
                             }}>PERSONAL CARE</Text>
-                        </View>
+                        </TouchableOpacity>
 
-                        <View 
+                        <TouchableOpacity onPress={() =>  this.onCheckBox4()}
                             style={{
                                 width: WIDTH - wp('50%'),
-                                backgroundColor: '#00cb9c',
+                                backgroundColor: this.state.checkBox4? '#00cb9c': '#fff',
                                 height: hp('25%'),
                             }}>
                             <View style={styles.checkIcon}>
@@ -143,22 +195,22 @@ export default class selectCategory extends React.Component {
                                     width: wp('15%'),
                                     height: hp('10%'),
                                     alignSelf: 'center',
-                                    tintColor:  '#fff',
+                                    tintColor:  this.state.checkBox4? '#fff': '#00cb9c'
                                 }} />
                             <Text style={{
-                                color: '#fff',
+                                color: this.state.checkBox4? '#fff': '#666666',
                                 fontSize: 15,
                                 alignSelf: 'center',
                                 marginTop: '10%'
                             }}>INDEPENDENT GROCER</Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     <View style = {{flexDirection: 'row', marginTop: hp('0%'),  borderBottomWidth: 2, borderBottomColor: '#ccc', marginBottom: hp('10%')}}>
-                    <View 
+                    <TouchableOpacity onPress={() =>  this.onCheckBox5()}
                         style={{
                             width: WIDTH - wp('50%'),
                             height: hp('25%'),
-                            backgroundColor: '#00cb9c'
+                            backgroundColor: this.state.checkBox5? '#00cb9c': '#fff',
                         }}>
                         <View style={styles.checkIcon}>
                             <AntDesign
@@ -173,20 +225,20 @@ export default class selectCategory extends React.Component {
                                 width: wp('15%'),
                                 height: hp('10%'),
                                 alignSelf: 'center',
-                                tintColor: '#fff',
+                                tintColor: this.state.checkBox5? '#fff': '#00cb9c'
                             }} />
                         <Text style={{
-                            color: '#fff',
+                            color: this.state.checkBox5? '#fff': '#666666',
                             fontSize: 15,
                             alignSelf: 'center',
                             marginTop: '10%'
                         }}>GIFT/BOOK STORE</Text>
-                    </View>
+                    </TouchableOpacity>
 
-                    <View 
+                    <TouchableOpacity onPress={() =>  this.onCheckBox6()}
                         style={{
                             width: WIDTH - wp('50%'),
-                            backgroundColor: '#fff',
+                            backgroundColor: this.state.checkBox6? '#00cb9c': '#fff',
                             height: hp('25%'),
                         }}>
                         <View style={styles.checkIcon}>
@@ -202,15 +254,15 @@ export default class selectCategory extends React.Component {
                                 width: wp('15%'),
                                 height: hp('10%'),
                                 alignSelf: 'center',
-                                tintColor:  '#00cb9c',
+                                tintColor:  this.state.checkBox6? '#fff': '#00cb9c'
                             }} />
                         <Text style={{
-                            color: '#666666',
+                            color: this.state.checkBox6? '#fff': '#666666',
                             fontSize: 15,
                             alignSelf: 'center',
                             marginTop: '10%'
                         }}>PET SUPPLY STORE</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                     
                 </ScrollView>

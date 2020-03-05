@@ -16,9 +16,7 @@ export default class home extends React.Component {
     }
 
     static navigationOptions = {
-
         tabBarIcon: ({ tintColor }) => (
-
             <AntDesign
                 name='home'
                 type='font-awesome'

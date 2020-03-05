@@ -51,19 +51,22 @@ export default class myOffer extends React.Component {
             <View style={styles.container}>
                 <View style={{ backgroundColor: '#000', height: '4%' }}></View>
                 <Text style = {styles.headerText}>My Offers</Text>
-                <View style = {{flexDirection: 'row', }}>
+                <View style = {{flexDirection: 'row', justifyContent: 'center', marginTop: hp('3%'), }}>
                     <TouchableOpacity
                         onPress={() => this.setState({ claimed: true, redeemed: false, favority: false })}
                             style={{
                                 padding: 15,
                                 alignItems: 'center',
                                 backgroundColor: '#fff',
-                                width: WIDTH - 250,
+                                width: wp('30%'),
                                 borderBottomColor: this.state.claimed? '#00cb9c': '#fff',
                                 borderBottomWidth: this.state.claimed? 4 : 0,
                                 
                             }}>
-                            <Text style={styles.loginText}>claimed</Text>
+                            <Text style={{
+                                color: this.state.claimed? '#00cb9c': '#666666',
+                                fontSize: 15
+                            }}>CLAIMED</Text>
                                     
                     </TouchableOpacity>
                     <TouchableOpacity 
@@ -72,12 +75,15 @@ export default class myOffer extends React.Component {
                                 padding: 15,
                                 alignItems: 'center',
                                 backgroundColor: '#fff',
-                                width: WIDTH - 250,
+                                width: wp('30%'),
                                 borderBottomColor: this.state.redeemed? '#00cb9c': '#fff',
                                 borderBottomWidth: this.state.redeemed? 4 : 0,
                                 
                             }}>
-                            <Text style={styles.loginText}>redeemed</Text>
+                            <Text style={{
+                                color: this.state.redeemed? '#00cb9c': '#666666',
+                                fontSize: 15
+                            }}>REDEEMED</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
                         onPress={() => this.setState({ claimed: false, redeemed: false, favority: true})}
@@ -85,12 +91,15 @@ export default class myOffer extends React.Component {
                                 padding: 15,
                                 alignItems: 'center',
                                 backgroundColor: '#fff',
-                                width: WIDTH - 250,
+                                width: wp('30%'),
                                 borderBottomColor: this.state.favority? '#00cb9c': '#fff',
                                 borderBottomWidth: this.state.favority? 4 : 0,
                                 
                             }}>
-                            <Text style={styles.loginText}>favority</Text>
+                            <Text style={{
+                                color: this.state.favority? '#00cb9c': '#666666',
+                                fontSize: 15
+                            }}>FAVORITE</Text>
                     </TouchableOpacity>
                 </View>
                 {this.ScreenView()}

@@ -29,7 +29,20 @@ export default class chat extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={{ backgroundColor: '#000', height: '4%' }}></View>
-                <Text style = {styles.headerText}>My Offers</Text>
+                <View style={{ marginTop: hp('2%'), marginHorizontal: wp('5%'), flexDirection: 'row' }}>
+                    <View style={{ marginLeft: wp('0%') }}>
+                        <Text style = {styles.headerText}>Chat</Text>
+                    </View>
+                    <View style={{ marginLeft: wp('63%') }}>
+                        <MaterialIcons name='location-on' color='#5f5d70' size={26}
+                            onPress={
+                                () => this.props.navigation.navigate('#')
+                            } />
+                    </View>
+                    <View style={{ marginTop: 0, }}>
+                        <Text style={{ fontSize: 20, marginLeft: wp('2%'), fontWeight: 'bold', color: '#5f5d70' }}>India</Text>
+                    </View>
+                </View>
             </View >
         );
     }
@@ -43,9 +56,9 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
     },
     headerText: {
-        marginHorizontal: wp('5%'),
-        marginTop: hp('2%'),
-        fontSize: 15,
+        marginLeft: wp('3%'),
+        marginTop: hp('0%'),
+        fontSize: hp('3%'),
         color: '#5f5d70'
     },
 });
