@@ -48,6 +48,7 @@ export default class home extends React.Component {
                     </View>
                 </View>
                 <View style={styles.inputContainer}>
+                    <TouchableOpacity  onPress={() => this.props.navigation.navigate('searchScreen')}>
                     <AntDesign
                         // reverse
                         name='search1'
@@ -56,11 +57,12 @@ export default class home extends React.Component {
                         size={22}
                         style={{ marginHorizontal: 20 }}
                     />
+                    </TouchableOpacity>
                     <TextInput
                         numberOfLines={6}
                         placeholderTextColor='#666666'
                         style={styles.searchInput}
-                        placeholder={'Search'}
+                        placeholder={'Find prodects or retailer'}
                         containerStyle={{ marginVertical: '5%' }}
                     />
                     <FontAwesome
@@ -89,11 +91,12 @@ export default class home extends React.Component {
                         </View>
                     </View>
                     <View style={styles.mainCategory}>
-                        <View style={styles.innerCategoryView}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('subCategory')}
+                         style={styles.innerCategoryView}>
                             <Image source={require('./../image/video1.png')}
                                 style={styles.imageCategory} />
                             <Text style={styles.categoryText}>PROPERTIES</Text>
-                        </View>
+                        </TouchableOpacity>
                         <View style={styles.innerCategoryView}>
                             <Image source={require('./../image/video1.png')}
                                 style={styles.imageCategory} />
@@ -189,7 +192,9 @@ export default class home extends React.Component {
                             <Text style={styles.top} >By Seven top retailer</Text>
                         </View>
                     </View>
-                    <Text style = {styles.allOffers}>VIEW ALL OFFERS</Text>
+                    <Text onPress={
+                        () => this.props.navigation.navigate('allOfferListing')}
+                         style = {styles.allOffers}>VIEW ALL OFFERS</Text>
                 </ScrollView>
             </View >
         );
