@@ -6,7 +6,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { TextInput } from 'react-native-paper';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Ionicons, FontAwesome, AntDesign, } from '@expo/vector-icons';
-export default class signIn extends React.Component {
+import SignInShoper from './SignInShoper';
+import SignInRetailer from './SingInRetailer';
+export default class accountType extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,6 +17,16 @@ export default class signIn extends React.Component {
         };
     }
 
+    ScreenView(){
+        if(this.state.shoppper){
+            return (
+                <SignInShoper navigation={this.props.navigation} />
+            )
+        }
+        else{
+            <SignInRetailer navigation={this.props.navigation} />
+        }
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -86,7 +98,8 @@ export default class signIn extends React.Component {
                             marginTop: '10%'
                         }}>I AM A RETALER</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('SignIn')}
+                    <Text style = {{alignSelf: 'flex-end', marginTop: 10, marginRight: 30, fontWeight: 'bold'}} onPress={() => this.props.navigation.navigate('SignInRetailer')}>Retailer Login</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('SignInShoper')}
                         style={styles.rightIcon}>
                         <AntDesign
                             name='arrowright'

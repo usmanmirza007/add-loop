@@ -12,7 +12,7 @@ var radio_props = [
   { value: 0, label: 'Male' },
   { value: 1, label: 'Female' },
 ];
-export default class signIn extends React.Component {
+export default class SignUpShoper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -132,7 +132,7 @@ export default class signIn extends React.Component {
             </TouchableOpacity>
             <View style={styles.signupView}>
               <Text style={styles.alresdy}>Already have an account?</Text>
-              <Text onPress={() => this.props.navigation.navigate('SignIn')}
+              <Text onPress={() => this.props.navigation.navigate('SignInShoper')}
                 style={styles.signupText}>Sign In</Text>
             </View>
           </ScrollView>

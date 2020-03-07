@@ -28,7 +28,7 @@ export default class otp extends Component {
                 <View style={styles.container}>
                     <View style={styles.location}>
                         <AntDesign
-                        onPress={() => this.props.navigation.navigate('SignUp')}
+                        onPress={() => this.props.navigation.navigate('SignUpRetailer')}
                             // reverse
                             name='arrowleft'
                             type='font-awesome'

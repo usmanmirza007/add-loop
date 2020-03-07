@@ -6,7 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { TextInput, TouchableRipple } from 'react-native-paper';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-export default class signIn extends React.Component {
+export default class SignInRetailer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -41,7 +41,7 @@ export default class signIn extends React.Component {
                     </TouchableOpacity>
                     <View style={styles.signupView}>
                         <Text style={styles.alresdy}>Dont have an account?</Text>
-                        <Text onPress={() => this.props.navigation.navigate('SignUp')}
+                        <Text onPress={() => this.props.navigation.navigate('SignUpShoper')}
                             style={styles.signupText}>Sign Up</Text>
                     </View>
                 </ScrollView>

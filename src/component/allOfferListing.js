@@ -27,13 +27,14 @@ export default class allOfferListing extends React.Component {
                                 } />
                         </View>
                         <View style={styles.categoryView}>
-                            <Text style={styles.categoryName}>Cars</Text>
+                            <Text style={styles.categoryName}>TVs in Cars</Text>
                         </View>
                     </View>
                 </View>
             <ScrollView>
                 <View style={styles.mainAdsView}>
-                    <View style={styles.adsView}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('offerDetail')}
+                     style={styles.adsView}>
                         <Image source={require('./../image/ads1.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
                         <View style={styles.mainText}>
                             <View style={styles.activeView}>
@@ -45,8 +46,9 @@ export default class allOfferListing extends React.Component {
                                 <View><Text style={styles.top}>22 Jun</Text></View>
                             </View>
                         </View>
-                    </View>
-                    <View style={styles.adsView}>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('offerDetail')}
+                     style={styles.adsView}>
                         <Image source={require('./../image/ads3.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
                         <View style={styles.mainText}>
                             <View style={styles.activeView}>
@@ -58,8 +60,9 @@ export default class allOfferListing extends React.Component {
                                 <View><Text style={styles.top}>22 Jun</Text></View>
                             </View>
                         </View>
-                    </View>
-                    <View style={styles.adsView}>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('offerDetail')}
+                     style={styles.adsView}>
                         <Image source={require('./../image/ads3.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
                         <View style={styles.mainText}>
                             <View style={styles.activeView}>
@@ -71,8 +74,9 @@ export default class allOfferListing extends React.Component {
                                 <View><Text style={styles.top}>22 Jun</Text></View>
                             </View>
                         </View>
-                    </View>
-                    <View style={styles.adsView}>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('offerDetail')}
+                     style={styles.adsView}>
                         <Image source={require('./../image/ads3.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
                         <View style={styles.mainText}>
                             <View style={styles.activeView}>
@@ -84,7 +88,7 @@ export default class allOfferListing extends React.Component {
                                 <View><Text style={styles.top}>22 Jun</Text></View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 </ScrollView>
             </View>
@@ -129,6 +133,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         paddingHorizontal: wp('1%'),
         marginHorizontal: wp('3%'),
+        marginBottom: wp('2%'),
         paddingTop: wp('1%')
     },
     activeView: {

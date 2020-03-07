@@ -13,7 +13,7 @@ export default class splash extends React.Component {
     }
     componentDidMount() {
 
-        setTimeout(() => { this.props.navigation.navigate('accountType') }, 2000);
+        setTimeout(() => { this.props.navigation.navigate('getStarted1') }, 2000);
     
       }
 
