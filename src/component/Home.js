@@ -235,8 +235,8 @@ const styles = StyleSheet.create({
         width: wp('30%')
     },
     imageCategory: {
-        width: wp('15%'),
-        height: hp('10%'),
+        width: wp('12%'),
+        height: hp('6%'),
         tintColor: '#00cb9c',
     },
     categoryText: {

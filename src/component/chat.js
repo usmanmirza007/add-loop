@@ -22,7 +22,7 @@ export default class chat extends React.Component {
     static navigationOptions = {
         tabBarIcon: ({ tintColor }) => (
             <Ionicons
-                name='md-time'
+                name='ios-time'
                 type='font-awesome'
                 size={24}
                 style={{ color: tintColor }}

@@ -37,7 +37,7 @@ export default class SignUpShoper extends React.Component {
               }}
               label='First Name'
               placeholder="First Name"
-              placeholderTextColor = {'#666666'}
+              placeholderTextColor={'#666666'}
               value={this.state.text}
               onChangeText={text => this.setState({ text })}
             />
@@ -51,7 +51,7 @@ export default class SignUpShoper extends React.Component {
               }}
               label='Last Name'
               placeholder="Last Name"
-              placeholderTextColor = {'#666666'}
+              placeholderTextColor={'#666666'}
               value={this.state.text}
               onChangeText={text => this.setState({ text })}
             />
@@ -65,7 +65,7 @@ export default class SignUpShoper extends React.Component {
               }}
               label='Email ID'
               placeholder="Email ID"
-              placeholderTextColor = {'#666666'}
+              placeholderTextColor={'#666666'}
               value={this.state.text}
               onChangeText={text => this.setState({ text })}
             />
@@ -79,7 +79,7 @@ export default class SignUpShoper extends React.Component {
               }}
               label='Mobile Number'
               placeholder="Mobile Number"
-              placeholderTextColor = {'#666666'}
+              placeholderTextColor={'#666666'}
               value={this.state.text}
               onChangeText={text => this.setState({ text })}
             />
@@ -93,7 +93,7 @@ export default class SignUpShoper extends React.Component {
               }}
               label='Location'
               placeholder="Location"
-              placeholderTextColor = {'#666666'}
+              placeholderTextColor={'#666666'}
               value={this.state.text}
               onChangeText={text => this.setState({ text })}
 
@@ -114,7 +114,7 @@ export default class SignUpShoper extends React.Component {
                   radio_props={radio_props}
                   style={{ marginTop: 0, }}
                   initial={0}
-                  
+
                   radioStyle={{ padding: 3, marginRight: 50 }}
                   buttonColor={'#666666'}
                   buttonSize={10}
@@ -124,6 +124,30 @@ export default class SignUpShoper extends React.Component {
                   onPress={(value) => { this.setState({ value: value }) }}
                 />
               </View>
+            </View>
+            <TextInput
+              style={styles.input1}
+              mode='outlined'
+              theme={{
+                colors: {
+                  primary: '#00cb9c',
+                }
+              }}
+              label='Date of Birth'
+              placeholder="Date of Birth"
+              placeholderTextColor={'#666666'}
+              value={this.state.text}
+              onChangeText={text => this.setState({ text })}
+
+            />
+            <View style={styles.person}>
+              <MaterialIcons
+                // reverse
+                name='person-pin'
+                type='font-awesome'
+                color='#666666'
+                size={24}
+              />
             </View>
             <TouchableOpacity
               style={styles.button}
@@ -199,6 +223,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginLeft: wp('80%'),
     marginTop: hp('77.5%')
+  },
+  person: {
+    position: 'absolute',
+    marginLeft: wp('80%'),
+    marginTop: hp('102%')
   },
   radioButton: {
     marginRight: 30,

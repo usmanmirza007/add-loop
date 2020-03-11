@@ -35,7 +35,7 @@ const TabScreens = createMaterialBottomTabNavigator({
     initialRouteName: 'home',
     activeColor: '#00cb9c',
     
-    inactiveColor: '#9e9e9e',
+    inactiveColor: '#5f5d70',
     barStyle: { backgroundColor: '#fdffff' },
   },);
 

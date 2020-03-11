@@ -19,7 +19,8 @@ export default class claimed extends React.Component {
             <View style={styles.container}>
             <ScrollView>
                 <View style={styles.mainAdsView}>
-                    <View style={styles.adsView}>
+                    <TouchableOpacity onPress = {() => this.props.navigation.navigate('offerDetail')}
+                     style={styles.adsView}>
                         <Image source={require('./../image/ads1.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
                         <View style={styles.mainText}>
                             <View style={styles.activeView}>
@@ -32,11 +33,12 @@ export default class claimed extends React.Component {
                                 <View><Text style={styles.top}>22 Jun</Text></View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                     <View style = {styles.codeView}>
                         <Text style = {styles.codeText}>Code: KJAHSKLDMAJAHDKDH</Text>
                     </View>
-                    <View style={styles.adsView}>
+                    <TouchableOpacity onPress = {() => this.props.navigation.navigate('offerDetail')}
+                     style={styles.adsView}>
                         <Image source={require('./../image/ads3.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
                         <View style={styles.mainText}>
                             <View style={styles.activeView}>
@@ -49,11 +51,12 @@ export default class claimed extends React.Component {
                                 <View><Text style={styles.top}>22 Jun</Text></View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                     <View style = {styles.codeView}>
                         <Text style = {styles.codeText}>Code: KJAHSKLDMAJAHDKDH</Text>
                     </View>
-                    <View style={styles.adsView}>
+                    <TouchableOpacity onPress = {() => this.props.navigation.navigate('offerDetail')} 
+                    style={styles.adsView}>
                         <Image source={require('./../image/ads3.png')} style={{ width: wp('41%'), height: hp('25%'), marginTop: hp('-1.2%') }} />
                         <View style={styles.mainText}>
                             <View style={styles.activeView}>
@@ -66,7 +69,7 @@ export default class claimed extends React.Component {
                                 <View><Text style={styles.top}>22 Jun</Text></View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableOpacity>
                     <View style = {styles.codeView}>
                         <Text style = {styles.codeText}>Code: KJAHSKLDMAJAHDKDH</Text>
                     </View>

@@ -17,14 +17,12 @@ export default class accountType extends React.Component {
         };
     }
 
-    ScreenView(){
+    changeApp(){
         if(this.state.shoppper){
-            return (
-                <SignInShoper navigation={this.props.navigation} />
-            )
+            {this.props.navigation.navigate('SignInShoper')}
         }
         else{
-            <SignInRetailer navigation={this.props.navigation} />
+            this.props.navigation.navigate('SignInRetailer')
         }
     }
     render() {
@@ -98,8 +96,7 @@ export default class accountType extends React.Component {
                             marginTop: '10%'
                         }}>I AM A RETALER</Text>
                     </TouchableOpacity>
-                    <Text style = {{alignSelf: 'flex-end', marginTop: 10, marginRight: 30, fontWeight: 'bold'}} onPress={() => this.props.navigation.navigate('SignInRetailer')}>Retailer Login</Text>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('SignInShoper')}
+                   <TouchableOpacity onPress={() => this.changeApp() }
                         style={styles.rightIcon}>
                         <AntDesign
                             name='arrowright'
