@@ -10,11 +10,13 @@ export default class SignInRetailer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            text: '',
+
         };
     }
 
     render() {
+        const { retailer1} = this.state
         return (
             <View style={styles.container}>
                 <View style={{ backgroundColor: '#000', height: '4%' }}></View>

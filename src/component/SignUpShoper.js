@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, KeyboardAvoidingView, Dimensions, TouchableOpacity, } from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, ImageBackground, KeyboardAvoidingView, Dimensions, TouchableOpacity, } from 'react-native';
 import { width, height, totalSize } from 'react-native-dimension';
 const { width: WIDTH } = Dimensions.get('window')
 import { ScrollView } from 'react-native-gesture-handler';
@@ -7,19 +7,110 @@ import { TextInput, TouchableRipple } from 'react-native-paper';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Ionicons, FontAwesome, AntDesign, EvilIcons, MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
+import axios from 'axios';
+import SpinnerScreen from './SpinnerScreen';
 
-var radio_props = [
-  { value: 0, label: 'Male' },
-  { value: 1, label: 'Female' },
-];
 export default class SignUpShoper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ''
+      text: '',
+      fname: '',
+      lname: '',
+      email: '',
+      mob_number: '',
+      cuntry_code: '',
+      radio_props: [
+        { gender: 0, label: 'Male' },
+        { gender: 1, label: 'Female' },
+      ],
+      location: '',
+      dob: '',
+      errorText: '',
+      loading: false
     };
   }
+  register = () => {
+    // alert('ok')
+    const { fname, lname, email, mob_number, country_code, radio_props, location, dob } = this.state;
 
+    if (this.state.mob_number === '') {
+      alert("Please Enter Phone Number");
+      return;
+    }
+    else {
+
+      fetch('http://shiamarriage.liftich.com/public/api/register', {
+
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          firsname: fname,
+          lastname: lname,
+          email: email,
+          country_code: country_code,
+          phonenumber: mob_number,
+          gender: radio_props.gender,
+          location: location,
+          dob: dob,
+        })
+      }).then((response) => response.json())
+        .then((responseJson) => {
+          console.log(responseJson);
+          // if (responseJson.message == 'Phonenumber already exist') {
+          //   alert('This Number Is Already Exist');
+          //   return;
+          // }
+          if (responseJson.success === "1") {
+
+            this.props.navigation.navigate('otp');
+            // this.props.navigation.navigate('otp', {uid:responseJson.user.id});
+          }
+          // if (responseJson.message == 'User not registered') {
+          //   alert('You Are Not Registered Something Went Wrong');
+          //   return;
+          // }
+
+          // alert(responseJson);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+  }
+
+  renderButton() {
+    if (this.state.loading) {
+      return <SpinnerScreen />
+    }
+    return (
+      <TouchableOpacity style={styles.button}
+        onPress={() => this.onSigUp(this.state.fname, this.state.lname, this.state.email, this.state.dob, this.state.mob_number, this.state.cuntry_code, this.state.radio_props, this.state.location)}>
+        <Text style={styles.buttonText}>SIGN UP</Text>
+      </TouchableOpacity>
+    )
+  }
+  onSigupFail() {
+    this.setState({ errorText: 'Authentication Failed.', loading: false })
+  }
+  onSignUpSuccess() {
+    this.setState({
+      loading: false,
+      fname: '',
+      lname: '',
+      email: '',
+      mob_number: '',
+      cuntry_code: '',
+      radio_props: '',
+      dob: '',
+      location: '',
+      errorText: '',
+    })
+    this.props.navigation.navigate('otp')
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -38,8 +129,8 @@ export default class SignUpShoper extends React.Component {
               label='First Name'
               placeholder="First Name"
               placeholderTextColor={'#666666'}
-              value={this.state.text}
-              onChangeText={text => this.setState({ text })}
+              value={this.state.fname}
+              onChangeText={fname => this.setState({ fname })}
             />
             <TextInput
               style={styles.input1}
@@ -52,8 +143,8 @@ export default class SignUpShoper extends React.Component {
               label='Last Name'
               placeholder="Last Name"
               placeholderTextColor={'#666666'}
-              value={this.state.text}
-              onChangeText={text => this.setState({ text })}
+              value={this.state.lname}
+              onChangeText={lname => this.setState({ lname })}
             />
             <TextInput
               style={styles.input1}
@@ -66,8 +157,8 @@ export default class SignUpShoper extends React.Component {
               label='Email ID'
               placeholder="Email ID"
               placeholderTextColor={'#666666'}
-              value={this.state.text}
-              onChangeText={text => this.setState({ text })}
+              value={this.state.email}
+              onChangeText={email => this.setState({ email })}
             />
             <TextInput
               style={styles.input1}
@@ -80,8 +171,8 @@ export default class SignUpShoper extends React.Component {
               label='Mobile Number'
               placeholder="Mobile Number"
               placeholderTextColor={'#666666'}
-              value={this.state.text}
-              onChangeText={text => this.setState({ text })}
+              value={this.state.mob_number}
+              onChangeText={mob_number => this.setState({ mob_number })}
             />
             <TextInput
               style={styles.input1}
@@ -94,8 +185,8 @@ export default class SignUpShoper extends React.Component {
               label='Location'
               placeholder="Location"
               placeholderTextColor={'#666666'}
-              value={this.state.text}
-              onChangeText={text => this.setState({ text })}
+              value={this.state.location}
+              onChangeText={location => this.setState({ location })}
 
             />
             <View style={styles.location}>
@@ -107,21 +198,34 @@ export default class SignUpShoper extends React.Component {
                 size={24}
               />
             </View>
+            <TextInput
+              style={styles.input1}
+              mode='outlined'
+              theme={{
+                colors: {
+                  primary: '#00cb9c',
+                }
+              }}
+              label='Country Code'
+              placeholder="Country Code"
+              placeholderTextColor={'#666666'}
+              value={this.state.cuntry_code}
+              onChangeText={cuntry_code => this.setState({ cuntry_code })}
+            />
             <View style={styles.mainRadioView}>
               <Text style={styles.choose}>Choose Gender</Text>
               <View style={styles.radioButton}>
                 <RadioForm
-                  radio_props={radio_props}
+                  radio_props={this.state.radio_props}
                   style={{ marginTop: 0, }}
                   initial={0}
-
                   radioStyle={{ padding: 3, marginRight: 50 }}
                   buttonColor={'#666666'}
                   buttonSize={10}
                   selectedButtonColor={'#00cb9c'}
                   formHorizontal={true}
-                  //buttonOuterSize={10}
-                  onPress={(value) => { this.setState({ value: value }) }}
+                  onPress={gender => this.setState({ gender })}
+                //buttonOuterSize={10}
                 />
               </View>
             </View>
@@ -136,8 +240,8 @@ export default class SignUpShoper extends React.Component {
               label='Date of Birth'
               placeholder="Date of Birth"
               placeholderTextColor={'#666666'}
-              value={this.state.text}
-              onChangeText={text => this.setState({ text })}
+              value={this.state.dob}
+              onChangeText={dob => this.setState({ dob })}
 
             />
             <View style={styles.person}>
@@ -149,11 +253,13 @@ export default class SignUpShoper extends React.Component {
                 size={24}
               />
             </View>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.props.navigation.navigate('otp')}>
-              <Text style={styles.buttonText}>SIGN UP</Text>
-            </TouchableOpacity>
+
+            <Text style={{ color: 'red', alignSelf: 'center', fontSize: 15 }}>{this.state.errorText}</Text>
+            <TouchableOpacity style={styles.button}
+        onPress={() => this.props.navigation.navigate('otp')}>
+        <Text style={styles.buttonText}>SIGN UP</Text>
+      </TouchableOpacity>
+
             <View style={styles.signupView}>
               <Text style={styles.alresdy}>Already have an account?</Text>
               <Text onPress={() => this.props.navigation.navigate('SignInShoper')}
@@ -227,7 +333,7 @@ const styles = StyleSheet.create({
   person: {
     position: 'absolute',
     marginLeft: wp('80%'),
-    marginTop: hp('102%')
+    marginTop: hp('115%')
   },
   radioButton: {
     marginRight: 30,

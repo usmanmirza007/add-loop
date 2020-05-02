@@ -6,15 +6,17 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { TextInput, TouchableRipple } from 'react-native-paper';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-export default class SignInRetailer extends React.Component {
+export default class SignInShoper extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            text: '',
+
         };
     }
 
     render() {
+        const { retailer1} = this.state
         return (
             <View style={styles.container}>
                 <View style={{ backgroundColor: '#000', height: '4%' }}></View>

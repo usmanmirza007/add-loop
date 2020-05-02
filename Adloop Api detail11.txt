@@ -1,0 +1,50 @@
+1. Shopper signup
+
+http://aajo.in/public/api/shopper_signup
+
+Parameters: firstname, lastname, email, country_code, phonenumber, gender, location
+
+
+2. Shopper OTP Verify
+
+http://aajo.in/public/api/shopper_otpverify
+
+Parameters: phonenumber, country_code, code
+
+
+3. Shopper Login 
+
+http://aajo.in/public/api/shopper_login
+
+Parameters: phonenumber
+
+
+4.Retailer Signup
+
+http://aajo.in/public/api/retailer_signup
+
+Parameters: firstname, lastname,  country_code, phonenumber
+
+5. Retailer OTP Verify
+
+http://aajo.in/public/api/retailer_otpverify
+
+Parameters: phonenumber, country_code, code
+
+6. Retailer Login
+
+http://aajo.in/public/api/retailer_login
+
+Parameters: phonenumber
+
+7. Category List
+
+http://aajo.in/public/api/categorylist  (NO Parameters)
+
+8. Subcategory of Main category
+
+http://aajo.in/public/api/subcategorylist
+
+Parameter: category_id  
+
+ 

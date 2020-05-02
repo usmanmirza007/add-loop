@@ -1,17 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View, Image, ImageBackground, KeyboardAvoidingView, Dimensions, TouchableOpacity, } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Image,FlatList, ImageBackground, KeyboardAvoidingView, Dimensions, TouchableOpacity, } from 'react-native';
 import { width, height, totalSize } from 'react-native-dimension';
 const { width: WIDTH } = Dimensions.get('window')
 import { ScrollView } from 'react-native-gesture-handler';
 import { TouchableRipple } from 'react-native-paper';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Ionicons, FontAwesome, AntDesign, EvilIcons, MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
+import axios from 'axios';
 
 export default class home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            text: '',
+            responseData: []
         };
     }
 
@@ -24,6 +26,35 @@ export default class home extends React.Component {
                 style={{ color: tintColor }}
                 containerStyle={{ width: width(10) }}
             />
+        )
+    }
+    componentDidMount() {
+        axios.get(`https://adloop.malangis.com/public/api/categorylist`)
+            .then((response) => {
+                console.log(response.data.list);
+                if (response.data.success == "1") {
+                    this.setState({ responseData: response.data.list})
+                    //console.log(this.state.responseData)
+                }
+            })
+            .catch((error) => {
+                Alert.alert("Please Check Your Internet Connection");
+            });
+    }
+
+    renderDayRow = ({ item, }) => {
+        //console.log(item.image)
+        return (
+            <View style={styles.mainCategory}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('subCategory')}
+                    style={styles.innerCategoryView}>
+                    <Image source={{uri: item.image =  "https://adloop.malangis.com/public/assets/category/thumb/1585209822Roman_03102015rf-73b-679239107.jpg"}}
+                    
+                        style={styles.imageCategory} />
+                    <Text style={styles.categoryText}>{item.category_name}</Text>
+                </TouchableOpacity>
+            </View>
+
         )
     }
     render() {
@@ -48,15 +79,15 @@ export default class home extends React.Component {
                     </View>
                 </View>
                 <View style={styles.inputContainer}>
-                    <TouchableOpacity  onPress={() => this.props.navigation.navigate('searchScreen')}>
-                    <AntDesign
-                        // reverse
-                        name='search1'
-                        type='font-awesome'
-                        color='#5f5d70'
-                        size={22}
-                        style={{ marginHorizontal: 20 }}
-                    />
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('searchScreen')}>
+                        <AntDesign
+                            // reverse
+                            name='search1'
+                            type='font-awesome'
+                            color='#5f5d70'
+                            size={22}
+                            style={{ marginHorizontal: 20 }}
+                        />
                     </TouchableOpacity>
                     <TextInput
                         numberOfLines={6}
@@ -90,58 +121,13 @@ export default class home extends React.Component {
                                 } />
                         </View>
                     </View>
-                    <View style={styles.mainCategory}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('subCategory')}
-                         style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>PROPERTIES</Text>
-                        </TouchableOpacity>
-                        <View style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>CARS</Text>
-                        </View>
-                        <View style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>FURNITURE</Text>
-                        </View>
-                    </View>
-                    <View style={styles.mainCategory}>
-                        <View style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>JOBS</Text>
-                        </View>
-                        <View style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>  ELECTRONIC{'\n'}& APPLIANCES</Text>
-                        </View>
-                        <View style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>MOBILES</Text>
-                        </View>
-                    </View>
-                    <View style={styles.mainCategory}>
-                        <View style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>BIKES</Text>
-                        </View>
-                        <View style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>BOOKS SPORTS{'\n'}    & HOBBIES</Text>
-                        </View>
-                        <View style={styles.innerCategoryView}>
-                            <Image source={require('./../image/video1.png')}
-                                style={styles.imageCategory} />
-                            <Text style={styles.categoryText}>FASHION</Text>
-                        </View>
-                    </View>
+                    <FlatList
+                        data={this.state.responseData}
+                        renderItem={this.renderDayRow}
+                        keyExtractor={item => item.id}
+                        numColumns={3}
+                    />
+
                     <View style={{ marginTop: hp('5%'), marginBottom: hp('3%'), marginHorizontal: wp('5%'), flexDirection: 'row' }}>
                         <View style={{ marginTop: 0, }}>
                             <Text style={{ fontSize: 20, marginLeft: 0, fontWeight: 'bold', color: '#5f5d70' }}>Fresh & Nes Offers</Text>
@@ -194,7 +180,7 @@ export default class home extends React.Component {
                     </View>
                     <Text onPress={
                         () => this.props.navigation.navigate('allOfferListing')}
-                         style = {styles.allOffers}>VIEW ALL OFFERS</Text>
+                        style={styles.allOffers}>VIEW ALL OFFERS</Text>
                 </ScrollView>
             </View >
         );
@@ -225,7 +211,7 @@ const styles = StyleSheet.create({
     },
     mainCategory: {
         marginTop: hp('3%'),
-        marginLeft: wp('0%'),
+        marginLeft: wp('5%'),
         flexDirection: 'row',
         justifyContent: 'space-around'
     },
@@ -237,7 +223,6 @@ const styles = StyleSheet.create({
     imageCategory: {
         width: wp('12%'),
         height: hp('6%'),
-        tintColor: '#00cb9c',
     },
     categoryText: {
         color: '#666666',
@@ -278,7 +263,7 @@ const styles = StyleSheet.create({
         marginTop: hp('1%'),
         marginBottom: hp('2%'),
     },
-    allOffers:{
+    allOffers: {
         alignSelf: 'center',
         fontSize: 15,
         fontWeight: 'bold',

@@ -18,8 +18,22 @@ export default class otp extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            shopper: this.props.navigation.getParam('SHOPPER'),
+            retailer: this.props.navigation.getParam('RETAILER'),
         };
+        console.log("otp",this.state.shopper)
     }
+
+    register(){
+        const {shopper, retailer} = this.state;
+        if(shopper === 'i am shopper'){
+            this.props.navigation.navigate('SignInShoper');
+        }
+        else{
+            this.props.navigation.navigate('SignInRetailer');
+        }
+    }
+
     render() {
 
         return (
@@ -55,7 +69,7 @@ export default class otp extends Component {
                         />
                         <TouchableOpacity
                             style={styles.button}
-                            onPress={() => this.props.navigation.navigate('#')}>
+                            onPress={() => this.register()}>
                             <Text style={styles.buttonText}>VERIFY</Text>
                         </TouchableOpacity>
                     </View>

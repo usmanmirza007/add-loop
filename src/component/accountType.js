@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, KeyboardAvoidingView, Dimensions, TouchableOpacity, } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, AsyncStorage, KeyboardAvoidingView, Dimensions, TouchableOpacity, } from 'react-native';
 import { width, height, totalSize } from 'react-native-dimension';
 const { width: WIDTH } = Dimensions.get('window')
 import { ScrollView } from 'react-native-gesture-handler';
@@ -13,16 +13,21 @@ export default class accountType extends React.Component {
         super(props);
         this.state = {
             shoppper: true,
-            retaler: false
+            retaler: false,
+            shopper: 'i am shopper',
+            retailer: 'i am retailer',
         };
+        console.log(this.state.shopper)
+        console.log(this.state.retailer)
     }
-
+    
     changeApp(){
+        const {shopper, retailer} = this.state
         if(this.state.shoppper){
-            {this.props.navigation.navigate('SignInShoper')}
+            {this.props.navigation.navigate('otp',{SHOPPER: shopper})}
         }
         else{
-            this.props.navigation.navigate('SignInRetailer')
+            this.props.navigation.navigate('otp', {RETAILER: retailer,})
         }
     }
     render() {
